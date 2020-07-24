@@ -7,21 +7,16 @@ app=Flask(__name__)
 @app.route('/')
 def hello():
     return "Welcome"
-@app.route('/mouth',methods=['GET'])
-def mouth():
+@app.route('/all',methods=['GET'])
+def getAll():
     encoded = {}
-    run={
-        "message" : "IamRuning"
-    }
-    for file in os.listdir('env/assets/mouth'):
-        with open('env/assets/mouth/'+file,"rb") as img_file:
+    temp=[]
+    for file in os.listdir('assets/mouth'):
+        with open("assets/mouth/"+ file,"rb") as img_file:
             encoded_string= base64.b64encode(img_file.read())
             out = encoded_string.decode('utf-8')
-        encoded[file] = out
-        decode = base64.b64decode(out)
-        filename='demo.jpg'
-        with open(filename,"wb") as f:
-            f.write(decode)
+        temp.append(out)
+    encoded['mouth'] = temp    
     post = json.dumps(encoded)
     return jsonify(post)
 
