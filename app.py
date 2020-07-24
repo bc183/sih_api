@@ -10,13 +10,14 @@ def hello():
 @app.route('/all',methods=['GET'])
 def getAll():
     encoded = {}
-    temp=[]
-    for file in os.listdir('assets/mouth'):
-        with open("assets/mouth/"+ file,"rb") as img_file:
-            encoded_string= base64.b64encode(img_file.read())
-            out = encoded_string.decode('utf-8')
-        temp.append(out)
-    encoded['mouth'] = temp    
+    for direct in os.listdir('assets'):
+        temp=[]
+        for file in os.listdir('assets/'+direct):
+            with open("assets/"+ direct + "/" + file,"rb") as img_file:
+                encoded_string= base64.b64encode(img_file.read())
+                out = encoded_string.decode('utf-8')
+            temp.append(out)
+        encoded[direct] = temp    
     post = json.dumps(encoded)
     return jsonify(post)
 
