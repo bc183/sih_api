@@ -19,7 +19,7 @@ def getAll():
             temp.append(out)
         encoded[direct] = temp    
     post = json.dumps(encoded)
-    return jsonify(post)
+    return post
 
 if __name__=="__main__":
     app.run(debug=True)
