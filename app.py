@@ -6,6 +6,7 @@ import base64
 import os,json
 
 app=Flask(__name__)
+app.secret_key = 'mysecret'
 
 app.config['MONGO_DBNAME'] = 'SIH'
 app.config['MONGO_URI'] = "mongodb+srv://bc007:msdhoni007@cluster0.dcb5w.mongodb.net/users?retryWrites=true&w=majority"
@@ -59,5 +60,4 @@ def getAll():
         return post
     return "please Login",500
 if __name__=="__main__":
-    app.secret_key = 'mysecret'
     app.run(debug=True)
