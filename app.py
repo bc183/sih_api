@@ -18,7 +18,6 @@ def login():
     data = request.json
     users = mongo.db.users
     login_user = users.find_one({"name": data["username"]})
-    print(login_user)
     if login_user is not None:
         if bcrypt.hashpw(data["password"].encode('utf-8'), login_user["password"]) == login_user["password"]    :
             session["username"] = data["username"]
