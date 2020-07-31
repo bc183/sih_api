@@ -43,6 +43,8 @@ def register():
 @app.route('/')
 def hello():
     return "Welcome"
+
+
 @app.route('/all',methods=['GET'])
 def getAll():
     if session["username"] is not None:
